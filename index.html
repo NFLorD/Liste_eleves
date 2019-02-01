@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <title>Applica-quoi ?</title>
+  </head>
+  <body>
+    <header class="container" style="text-align: center">
+      <h1>Gâteau à la banane</h1>
+    </header>
+    <main class="container">
+      <section id="liste">
+        <h2>Liste des élèves</h2>
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Numéro</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button class="btn btn-primary" id="btn-add">Ajouter un élève</button>
+      </section>
+      <section id="form" class="d-none">
+        <h2>Ajouter un élève</h2>
+        <form action="">
+          <div class="form-group">
+            <label for="lastName">Nom de famille</label
+            ><input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              placeholder="Nom de famille"
+            />
+            <div class="invalid-feedback">
+              Le nom de famille est obligatoire
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="firstName">Prénom</label
+            ><input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              placeholder="Prénom"
+            />
+            <div class="invalid-feedback">Le prénom est obligatoire</div>
+          </div>
+          <div class="form-group">
+            <label for="Email">Adresse email</label
+            ><input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Adresse email"
+            />
+            <div class="invalid-feedback">L'adresse email est obligatoire</div>
+          </div>
+          <button type="submit" class="btn btn-success">Enregistrer</button>
+          <button type="button" class="btn btn-warning" id="btn-cancel">
+            Annuler
+          </button>
+        </form>
+      </section>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
