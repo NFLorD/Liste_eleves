@@ -17,9 +17,17 @@ function del(index, num) {
   eleves.splice(index, num);
 }
 
-function edit(index, propName, value) {
-  let eleve = eleves[index];
-  eleve[propName] = value;
+function edit(index, x, y, z) {
+  eleves[index] = {
+    lastName: x,
+    firstName: y,
+    email: z
+  };
 }
+
+// function edit(index, propName, value) {
+//   let eleve = eleves[index];
+//   eleve[propName] = value;
+// }
 
 //https://notepad.pw/3wam

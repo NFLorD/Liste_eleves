@@ -26,6 +26,15 @@ function listUpdateOnSubmit(e) {
     Array.from(inputs)
       .filter(input => input.value == "")
       .forEach(input => input.classList.add("is-invalid"));
+  } else if (modify == true) {
+    edit(remember, inputs[0].value, inputs[1].value, inputs[2].value);
+    toggle();
+    display();
+    modify = false;
+    remember = undefined;
+    inputs[0].value = "";
+    inputs[1].value = "";
+    inputs[2].value = "";
   } else {
     add(inputs[0].value, inputs[1].value, inputs[2].value);
     toggle();
@@ -56,6 +65,8 @@ function display() {
 
 let btnsMod;
 let btnsSuppr;
+let modify = false;
+let remember;
 
 function mapButtons() {
   btnsMod = document.querySelectorAll("td button.btn.btn-primary");
@@ -66,9 +77,16 @@ function mapButtons() {
       display();
     });
   });
-  btnsMod.forEach(btn => btn.addEventListener("click", modifyListElement));
+  btnsMod.forEach((btn, i) =>
+    btn.addEventListener("click", function() {
+      toggle();
+      inputs[0].value = eleves[i].lastName;
+      inputs[1].value = eleves[i].firstName;
+      inputs[2].value = eleves[i].email;
+      modify = true;
+      remember = i;
+    })
+  );
 }
-
-function modifyListElement() {}
 
 document.body.onload = display(tbody);
