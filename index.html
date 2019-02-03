@@ -10,6 +10,7 @@
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Applica-quoi ?</title>
   </head>
   <body onload = "display(tbody)">
@@ -44,7 +45,9 @@
               class="form-control"
               id="lastName"
               name="lastName"
-              placeholder="Nom de famille"
+              placeholder="ex: Dupont"
+              onfocus="if (this.placeholder == 'ex: Dupont') {this.placeholder = '';}"
+              onblur="if (this.placeholder == '') {this.placeholder = 'ex: Dupont';}"
             />
             <div class="invalid-feedback">
               Le nom de famille est obligatoire
@@ -57,7 +60,9 @@
               class="form-control"
               id="firstName"
               name="firstName"
-              placeholder="Prénom"
+              placeholder="ex: Albert"
+              onfocus="if (this.placeholder == 'ex: Albert') {this.placeholder = '';}"
+              onblur="if (this.placeholder == '') {this.placeholder = 'ex: Albert';}"
             />
             <div class="invalid-feedback">Le prénom est obligatoire</div>
           </div>
@@ -68,7 +73,9 @@
               class="form-control"
               id="email"
               name="email"
-              placeholder="Adresse email"
+              placeholder="ex: albertdupont@yahoo.zob"
+              onfocus="if (this.placeholder == 'ex: albertdupont@yahoo.zob') {this.placeholder = '';}"
+              onblur="if (this.placeholder == '') {this.placeholder = 'ex: albertdupont@yahoo.zob';}"
             />
             <div class="invalid-feedback">L'adresse email est obligatoire</div>
           </div>

@@ -40,6 +40,10 @@ function Eleve(lName, fName, email){
   }
 }
 
+Eleve.prototype.edit = function(){};
+Eleve.prototype.del = function(){
+}
+
 // function edit(index, propName, value) {
 //   let eleve = eleves[index];
 //   eleve[propName] = value;
