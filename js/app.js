@@ -10,34 +10,53 @@ const inputs = document.querySelectorAll("input");
 const btnAdd = document.getElementById("btn-add");
 const btnCancel = document.getElementById("btn-cancel");
 
-btnCancel.addEventListener("click", toggle);
-btnAdd.addEventListener("click", toggle);
+btnAdd.addEventListener("click", toggleOn);
+btnCancel.addEventListener("click", toggleOff);
 form.addEventListener("submit", listUpdateOnSubmit);
 
-function toggle() {
-  list.classList.toggle("d-none");
-  form.classList.toggle("d-none");
+function toggleOn() {
+  // apparition du formulaire
+  list.classList.add("d-none");
+  form.classList.remove("d-none");
+
+  // pré-remplissement des inputs si edit
+  if(modify){
+      inputs[0].value = eleves[remember].lastName;
+      inputs[1].value = eleves[remember].firstName;
+      inputs[2].value = eleves[remember].email;
+  }
+}
+
+function toggleOff(){
+	// disparition du formulaire, reset des inputs et réinitialisation de la variable de contrôle "modify"
+  	list.classList.remove("d-none");
+  	form.classList.add("d-none");
+	inputs[0].value = "";
+	inputs[1].value = "";
+	inputs[2].value = "";
+  	modify = false;
 }
 
 function listUpdateOnSubmit(e) {
   e.preventDefault();
+
+  // enlèvement des class invalid puis recalcul et application si nécessaire
   inputs.forEach(input => input.classList.remove("is-invalid"));
   if (inputs[0].value == "" || inputs[1].value == "" || inputs[2].value == "") {
     Array.from(inputs)
       .filter(input => input.value == "")
       .forEach(input => input.classList.add("is-invalid"));
-  } else if (modify == true) {
-    edit(remember, inputs[0].value, inputs[1].value, inputs[2].value);
-    toggle();
-    display();
-    modify = false;
-    remember = undefined;
-    inputs[0].value = "";
-    inputs[1].value = "";
-    inputs[2].value = "";
-  } else {
-    add(inputs[0].value, inputs[1].value, inputs[2].value);
-    toggle();
+  } 
+
+  // appel des fonctions modifier ou ajouter, fermeture du formulaire, ré-affichage du tableau updaté,
+  else {
+  	if (modify) {
+    	edit(remember, inputs[0].value, inputs[1].value, inputs[2].value);
+    	/*eleves[remember].edit(inputs[0].value, inputs[1].value, inputs[2].value);*/
+  	} else {
+    	add(inputs[0].value, inputs[1].value, inputs[2].value);
+  	}
+    toggleOff();
     display();
   }
 }
@@ -71,22 +90,22 @@ let remember;
 function mapButtons() {
   btnsMod = document.querySelectorAll("td button.btn.btn-primary");
   btnsSuppr = document.querySelectorAll("td button.btn.btn-danger");
+
   btnsSuppr.forEach(function(btn, i) {
     btn.addEventListener("click", function() {
-      del(i, 1);
-      display();
+      if(window.confirm("Voulez-vous vraiment supprimer cet élève ?")){
+	      del(i, 1);
+	      display();
+      }
     });
   });
   btnsMod.forEach((btn, i) =>
     btn.addEventListener("click", function() {
-      toggle();
-      inputs[0].value = eleves[i].lastName;
-      inputs[1].value = eleves[i].firstName;
-      inputs[2].value = eleves[i].email;
       modify = true;
       remember = i;
+      toggleOn();
     })
   );
 }
 
-document.body.onload = display(tbody);
+/*document.body.onload = display(tbody);*/
